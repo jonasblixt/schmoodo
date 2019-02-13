@@ -28,8 +28,7 @@ plat_clean:
 
 plat_final:
 	@mkimage_imx8 -commit > head.hash
-	@cat pb.bin head.hash > pb_hash.bin
+	@cat $(TARGET).bin head.hash > $(TARGET)_hash.bin
 	@mkimage_imx8 -soc QX -rev B0 \
-				  -append mx8qx-ahab-container.img \
 				  -c -scfw scfw_tcm.bin \
-				  -ap pb_hash.bin a35 0x80000000 -out pb.imx
+				  -ap $(TARGET)_hash.bin a35 0x80000000 -out pb.imx

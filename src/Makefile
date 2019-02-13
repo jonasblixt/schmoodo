@@ -68,7 +68,7 @@ SIZE=$(CROSS_COMPILE)size
 STRIP=$(CROSS_COMPILE)strip
 OBJCOPY=$(CROSS_COMPILE)objcopy
 
-LDFLAGS += --defsym=SHMOODO_ENTRY=$(PB_ENTRY) 
+LDFLAGS += --defsym=PB_ENTRY=$(PB_ENTRY) 
 LDFLAGS += -Tarch/$(PB_ARCH_NAME)/link.lds
 LDFLAGS += -Tplat/$(PB_PLAT_NAME)/link.lds
 LDFLAGS += -Tlink.lds  --build-id=none 
@@ -114,7 +114,7 @@ $(TARGET): $(OBJS) main.o
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 
-.PHONY: board_clean arch_clean plat_clean plat_early plat_final
+.PHONY: board_clean arch_clean plat_clean plat_early plat_final board_final
 
 clean: board_clean arch_clean plat_clean
 	@-rm -rf *.o $(TARGET) $(TARGET).bin *.map out
